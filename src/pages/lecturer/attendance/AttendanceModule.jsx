@@ -169,7 +169,7 @@ const AttendanceModule = () => {
     { header: 'Name', accessor: 'name', className: 'px-4 py-3 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider' },
     { header: 'Student ID', accessor: 'studentId', className: 'px-4 py-3 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider' },
     { header: 'Stream', accessor: 'class', className: 'px-4 py-3 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider' },
-    { header: 'Section', accessor: 'section', className: 'px-4 py-3 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider' },
+
     { header: 'Status', accessor: 'status', className: 'px-4 py-3 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider' },
   ];
 
@@ -237,18 +237,7 @@ const AttendanceModule = () => {
             ))}
           </select>
 
-          <label htmlFor="attendance-section" className="font-semibold text-gray-700 ml-4">Section:</label>
-          <select
-            id="attendance-section"
-            value={selectedSection}
-            onChange={(e) => setSelectedSection(e.target.value)}
-            className="border border-gray-300 rounded-lg px-4 py-2 text-gray-800 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors duration-200"
-          >
-            <option value="">All Sections</option>
-            {sections.map((sec) => (
-              <option key={sec} value={sec}>{sec}</option>
-            ))}
-          </select>
+
         </div>
 
         {showMobileSearch && (
@@ -275,7 +264,7 @@ const AttendanceModule = () => {
               <td className="py-3 px-4 text-sm text-gray-800 font-medium">{student.name}</td>
               <td className="py-3 px-4 text-sm text-gray-600">{student.studentId}</td>
               <td className="py-3 px-4 text-sm text-gray-600">{student.class}</td>
-              <td className="py-3 px-4 text-sm text-gray-600">{student.section}</td>
+
               <td className="py-3 px-4">
                 <div className="relative flex items-center">
                   <span className="absolute left-3">

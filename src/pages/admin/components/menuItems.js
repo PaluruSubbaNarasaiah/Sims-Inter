@@ -14,7 +14,7 @@ export const menuItems = [
       { icon: FaCreditCard, label: "Fee", href: "/admin/fee", visible: ["admin"], keywords: ["payments", "dues", "tuition"] },
       { icon: FaLandmark, label: "Bank", href: "/admin/bank", visible: ["admin"], keywords: ["accounts", "transactions", "finance"] },
       { icon: FaBook, label: "Subjects", href: "/admin/subjects", visible: ["admin"], keywords: ["subjects", "curriculum"] },
-      { icon: FaLaptopCode, label: "Classes", href: "/admin/classes", visible: ["admin", "lecturer"], keywords: ["sections", "years"] },
+      { icon: FaLaptopCode, label: "Group", href: "/admin/classes", visible: ["admin", "lecturer"], keywords: ["sections", "years"] },
       { icon: FaClipboardList, label: "Exam Reports", href: "/admin/exams", visible: ["admin", "lecturer", "student", "parent"], keywords: ["tests", "assessments", "grades", "results"] },
       { icon: FaRegCalendarAlt, label: "Schedules", href: "/admin/schedules", visible: ["admin", "lecturer", "student", "parent"], keywords: ["timetables", "calendar", "daily plan"] },
       { icon: FaClipboardCheck, label: "Assignments", href: "/admin/assignments", visible: ["admin", "lecturer", "student", "parent"], keywords: ["homework", "tasks", "projects"] },

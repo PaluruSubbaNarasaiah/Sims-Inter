@@ -13,6 +13,7 @@ const CreateScheduleModal = ({ initialData, onClose, onSave, programTabs }) => {
   // Main form data state
   const [formData, setFormData] = useState({
     program: initialData?.program || programTabs[0],
+    year: initialData?.year || '',
     examType: initialData?.examType || '',
     // courseSlots will now be an array of { course: string, date: string, time: string }
     courseSlots: initialData?.courseSlots || [],
@@ -32,6 +33,7 @@ const CreateScheduleModal = ({ initialData, onClose, onSave, programTabs }) => {
     if (initialData) {
       setFormData({
         program: initialData.program,
+        year: initialData.year || '',
         examType: initialData.examType,
         courseSlots: initialData.courseSlots || [],
       });
@@ -39,6 +41,7 @@ const CreateScheduleModal = ({ initialData, onClose, onSave, programTabs }) => {
       // Reset form data for a new schedule
       setFormData({
         program: programTabs[0],
+        year: '',
         examType: '',
         courseSlots: [],
       });
@@ -103,6 +106,7 @@ const CreateScheduleModal = ({ initialData, onClose, onSave, programTabs }) => {
   const validateForm = () => {
     let newErrors = {};
     if (!formData.program) newErrors.program = 'Program is required.';
+    if (!formData.year) newErrors.year = 'Year is required.';
     if (!formData.examType) newErrors.examType = 'Exam Type is required.';
     if (formData.courseSlots.length === 0) newErrors.courseSlots = 'At least one course slot is required.';
     setErrors(newErrors);
@@ -176,6 +180,25 @@ const CreateScheduleModal = ({ initialData, onClose, onSave, programTabs }) => {
             {errors.program && <p className="mt-1 text-sm font-bold text-red-600">{errors.program}</p>}
           </div>
 
+          {/* Year Select */}
+          <div>
+            <label htmlFor="year" className="block text-sm font-semibold text-gray-700 mb-1">
+              Year
+            </label>
+            <select
+              id="year"
+              name="year"
+              value={formData.year}
+              onChange={handleChange}
+              className={`mt-1 block w-full px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-base ${errors.year ? 'border-red-500 ring-red-200' : 'border-gray-300'}`}
+            >
+              <option value="">Select Year</option>
+              <option value="1">1st Year</option>
+              <option value="2">2nd Year</option>
+            </select>
+            {errors.year && <p className="mt-1 text-sm font-bold text-red-600">{errors.year}</p>}
+          </div>
+
           {/* Current Course Slots Display */}
           {formData.courseSlots.length > 0 && (
             <div className="border border-gray-200 rounded-md p-4 bg-gray-50">
@@ -208,7 +231,7 @@ const CreateScheduleModal = ({ initialData, onClose, onSave, programTabs }) => {
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 items-end">
               <div className="col-span-full md:col-span-1">
                 <label htmlFor="newCourse" className="block text-sm font-medium text-gray-700 mb-1">
-                  Course
+                  Subject
                 </label>
                 <input
                   type="text"

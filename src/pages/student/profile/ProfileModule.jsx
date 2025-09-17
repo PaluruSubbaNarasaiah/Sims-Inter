@@ -71,18 +71,7 @@ const ProfileModule = () => {
               <h2 className="text-2xl font-bold">{profileData.name}</h2>
               <p className="text-blue-700 bg-blue-100 px-4 py-1.5 rounded-full text-sm font-semibold mb-4">{profileData.role}</p> {/* Added mb-4 for spacing */}
 
-              {/* Edit/Save buttons moved here */}
-              <div className="flex justify-center items-center gap-4 mt-4"> {/* Added mt-4 for spacing */}
-                {isEditing ? (
-                  <button onClick={handleSave} className="flex items-center gap-2 px-5 py-2 rounded-lg bg-blue-700 text-white hover:bg-blue-800 transition">
-                    <Save size={18} /> Save Changes
-                  </button>
-                ) : (
-                  <button onClick={() => setIsEditing(true)} className="flex items-center gap-2 px-5 py-2 rounded-lg bg-gray-100 text-gray-800 hover:bg-gray-200 transition">
-                    <Edit2 size={18} /> Edit Profile
-                  </button>
-                )}
-              </div>
+
             </div>
           </div>
 
@@ -147,13 +136,7 @@ const ProfileModule = () => {
                   </div>
                 </div>
 
-                {/* Section - Read Only */}
-                <div>
-                  <label className="block text-sm mb-2">Section</label>
-                  <div className="flex items-center gap-3 bg-gray-50 px-4 py-2.5 border rounded-lg">
-                    <Users size={18} /> <span>{profileData.section}</span>
-                  </div>
-                </div>
+
 
                 {/* Class lecturer ID with Name - Read Only */}
                 <div>

@@ -71,18 +71,7 @@ const ProfileModule = () => {
               <p className="text-blue-700 bg-blue-100 px-4 py-1.5 rounded-full text-sm font-semibold mb-2">{profileData.role}</p>
               <p className="text-gray-600 text-sm mb-4">{profileData.occupation}</p>
 
-              {/* Edit/Save buttons moved here */}
-              <div className="flex justify-center items-center gap-4 mt-4"> {/* Added mt-4 for spacing */}
-                {isEditing ? (
-                  <button onClick={handleSave} className="flex items-center gap-2 px-5 py-2 rounded-lg bg-blue-700 text-white hover:bg-blue-800 transition">
-                    <Save size={18} /> Save Changes
-                  </button>
-                ) : (
-                  <button onClick={() => setIsEditing(true)} className="flex items-center gap-2 px-5 py-2 rounded-lg bg-gray-100 text-gray-800 hover:bg-gray-200 transition">
-                    <Edit2 size={18} /> Edit Profile
-                  </button>
-                )}
-              </div>
+
             </div>
           </div>
 
@@ -157,36 +146,7 @@ const ProfileModule = () => {
                 </div>
               </div>
 
-              {/* Children Information Section */}
-              <div className="mt-8">
-                <h3 className="text-xl font-semibold mb-6 border-b pb-3 flex items-center gap-2">
-                  <Users size={20} /> Children Information
-                </h3>
-                <div className="grid grid-cols-1 gap-4">
-                  {profileData.children.map((child, index) => (
-                    <div key={index} className="bg-gray-50 p-4 rounded-lg border">
-                      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-                        <div>
-                          <label className="block text-xs text-gray-600 mb-1">Student Name</label>
-                          <p className="font-medium">{child.name}</p>
-                        </div>
-                        <div>
-                          <label className="block text-xs text-gray-600 mb-1">Roll Number</label>
-                          <p className="font-medium">{child.rollNo}</p>
-                        </div>
-                        <div>
-                          <label className="block text-xs text-gray-600 mb-1">Stream</label>
-                          <p className="font-medium text-blue-600">{child.stream}</p>
-                        </div>
-                        <div>
-                          <label className="block text-xs text-gray-600 mb-1">Year</label>
-                          <p className="font-medium">{child.year}</p>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
+
             </div>
           </div>
         </div>

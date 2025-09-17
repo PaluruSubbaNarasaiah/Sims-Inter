@@ -12,6 +12,7 @@ const SchedulesModule = () => {
     {
       id: 'mock1',
       program: 'MPC',
+      year: '1',
       examType: 'Formative Assessment 1',
       date: '2025-07-10',
       time: '09:00',
@@ -20,6 +21,7 @@ const SchedulesModule = () => {
     {
       id: 'mock2',
       program: 'MPC',
+      year: '1',
       examType: 'Formative Assessment 1',
       date: '2025-07-15',
       time: '11:00',
@@ -28,6 +30,7 @@ const SchedulesModule = () => {
     {
       id: 'mock3',
       program: 'BiPC',
+      year: '2',
       examType: 'Summative Assessment 1',
       date: '2025-07-20',
       time: '10:30',
@@ -36,6 +39,7 @@ const SchedulesModule = () => {
     {
       id: 'mock4',
       program: 'CEC',
+      year: '1',
       examType: 'Summative Assessment 1',
       date: '2025-07-25',
       time: '14:00',
@@ -44,6 +48,7 @@ const SchedulesModule = () => {
     {
       id: 'mock5',
       program: 'HEC',
+      year: '2',
       examType: 'Summative Assessment 2',
       date: '2025-08-01',
       time: '09:00',

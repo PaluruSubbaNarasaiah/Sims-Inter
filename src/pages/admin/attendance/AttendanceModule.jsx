@@ -244,7 +244,7 @@ const AttendanceModule = () => {
     { header: 'Photo', accessor: 'photo', className: 'w-16 px-4 py-3' },
     { header: 'Name', accessor: 'name', className: 'px-4 py-3 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider' },
     { header: 'Lecturer ID', accessor: 'lecturerId', className: 'px-4 py-3 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider' },
-    { header: 'Courses', accessor: 'courses', className: 'px-4 py-3 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider' },
+    { header: 'Subjects', accessor: 'courses', className: 'px-4 py-3 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider' },
     { header: 'Status', accessor: 'status', className: 'w-56 px-4 py-3 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider' },
   ];
   // Conditionally add CheckIn Time column for lecturers
@@ -368,14 +368,14 @@ const AttendanceModule = () => {
 
             {activeTab === 'lecturers' && (
               <>
-                <label htmlFor="attendance-course" className="font-semibold text-gray-700 ml-4">Course:</label>
+                <label htmlFor="attendance-course" className="font-semibold text-gray-700 ml-4">Subject:</label>
                 <select
                   id="attendance-course"
                   value={selectedCourse}
                   onChange={(e) => setSelectedCourse(e.target.value)}
                   className="border border-gray-300 rounded-lg px-4 py-2 text-gray-800 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors duration-200"
                 >
-                  <option value="">All Courses</option>
+                  <option value="">All Subjects</option>
                   {allCourses.map((sub) => (
                     <option key={sub} value={sub}>{sub}</option>
                   ))}

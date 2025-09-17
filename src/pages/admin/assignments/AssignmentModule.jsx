@@ -55,7 +55,7 @@ const EditAssignment = ({
     e.preventDefault();
 
     if (!editedAssignment.title || !editedAssignment.program || !editedAssignment.semester || !editedAssignment.course || !editedAssignment.dueDate) {
-      setAlert({ message: 'Please fill in all required fields (Title, Stream, Year, Course, Due Date).', type: 'error' });
+      setAlert({ message: 'Please fill in all required fields (Title, Group, Year, Subject, Due Date).', type: 'error' });
       return;
     }
 
@@ -98,9 +98,9 @@ const EditAssignment = ({
             />
           </div>
 
-          {/* Program */}
+          {/* Group */}
           <div>
-            <label htmlFor="edit-program" className="block text-sm font-medium text-gray-700 mb-1">Stream <span className="text-red-500">*</span></label>
+            <label htmlFor="edit-program" className="block text-sm font-medium text-gray-700 mb-1">Group <span className="text-red-500">*</span></label>
             <select
               id="edit-program"
               name="program"
@@ -109,14 +109,14 @@ const EditAssignment = ({
               className="mt-1 block w-full px-4 py-2.5 rounded-lg border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 appearance-none bg-white pr-10 text-gray-900 transition-colors cursor-pointer"
               required
             >
-              <option value="">Select Stream</option>
+              <option value="">Select Group</option>
               {allAvailablePrograms.map(prog => (
                 <option key={prog} value={prog}>{prog}</option>
               ))}
             </select>
           </div>
 
-          {/* Semester */}
+          {/* Year */}
           <div>
             <label htmlFor="edit-semester" className="block text-sm font-medium text-gray-700 mb-1">Year <span className="text-red-500">*</span></label>
             <select
@@ -134,9 +134,9 @@ const EditAssignment = ({
             </select>
           </div>
 
-          {/* Course */}
+          {/* Subject */}
           <div>
-            <label htmlFor="edit-course" className="block text-sm font-medium text-gray-700 mb-1">Course <span className="text-red-500">*</span></label>
+            <label htmlFor="edit-course" className="block text-sm font-medium text-gray-700 mb-1">Subject <span className="text-red-500">*</span></label>
             <input
               type="text"
               id="edit-course"
@@ -505,7 +505,7 @@ const AssignmentModule = () => {
           <div className="col-span-1 md:col-span-1 flex flex-col gap-4"> {/* Container for filters */}
             {/* Class Filter */}
             <div>
-              <label htmlFor="programFilter" className="block text-sm font-medium text-gray-700 mb-1">Filter by Stream:</label>
+              <label htmlFor="programFilter" className="block text-sm font-medium text-gray-700 mb-1">Filter by Group:</label>
               <div className="relative">
                 <select
                   id="programFilter"
@@ -569,9 +569,9 @@ const AssignmentModule = () => {
             <thead className="bg-gray-50">
               <tr>
                 <th className="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Title</th>
-                <th className="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Stream</th>
+                <th className="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Group</th>
                 <th className="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Year</th>
-                <th className="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Course</th>
+                <th className="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Subject</th>
                 <th className="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Due Date</th>
                 {/* Removed Status Column Header */}
                 <th className="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Submissions</th>
@@ -673,7 +673,7 @@ const AssignmentModule = () => {
                   <div className="bg-gray-50 p-4 rounded-lg border border-gray-200 flex items-center gap-3">
                     <Users size={20} className="text-indigo-500" />
                     <div>
-                      <h3 className="text-sm font-medium text-gray-700">Stream</h3>
+                      <h3 className="text-sm font-medium text-gray-700">Group</h3>
                       <p className="text-base font-semibold text-gray-900">{selectedAssignment.program}</p>
                     </div>
                   </div>
@@ -688,7 +688,7 @@ const AssignmentModule = () => {
                   <div className="bg-gray-50 p-4 rounded-lg border border-gray-200 flex items-center gap-3">
                     <Tag size={20} className="text-green-500" />
                     <div>
-                      <h3 className="text-sm font-medium text-gray-700">Course</h3>
+                      <h3 className="text-sm font-medium text-gray-700">Subject</h3>
                       <p className="text-base font-semibold text-gray-900">{selectedAssignment.course}</p>
                     </div>
                   </div>

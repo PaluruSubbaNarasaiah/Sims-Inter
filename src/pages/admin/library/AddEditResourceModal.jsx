@@ -67,12 +67,13 @@ const AddEditResourceModal = ({ initialData, onClose, onSave }) => { // Removed 
     { value: 'link', label: 'External Link' }
   ];
 
-  // Program options for a degree college
+  // Group options for intermediate college
   const programOptions = [
-    { value: 'B.Sc. Computer Science', label: 'B.Sc. Computer Science' },
-    { value: 'B.A. History', label: 'B.A. History' },
-    { value: 'B.Com. General', label: 'B.Com. General' },
-    { value: 'B.Com. Computer', label: 'B.Com. Computer' },
+    { value: 'MPC', label: 'MPC' },
+    { value: 'BiPC', label: 'BiPC' },
+    { value: 'CEC', label: 'CEC' },
+    { value: 'MEC', label: 'MEC' },
+    { value: 'HEC', label: 'HEC' },
   ];
 
   const handleInputChange = (e) => {
@@ -190,7 +191,7 @@ const AddEditResourceModal = ({ initialData, onClose, onSave }) => { // Removed 
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Useful for Programs</label>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Groups</label>
             <Select
               isMulti
               options={programOptions}
@@ -199,7 +200,7 @@ const AddEditResourceModal = ({ initialData, onClose, onSave }) => { // Removed 
                 ...formData,
                 programs: selected.map(opt => opt.value)
               })}
-              placeholder="Select programs..."
+              placeholder="Select groups..."
               className="basic-multi-select"
               classNamePrefix="select"
             />

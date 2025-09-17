@@ -105,10 +105,6 @@ export const CreateEditHomeworkModal = ({ initialData, onClose, onSave, subjectO
                 alert("Please select a class for all homework entries.");
                 return;
             }
-            if (!entry.sectionSelected) {
-                alert("Please select a section for all homework entries.");
-                return;
-            }
             const hasEmptyItems = entry.homeworkItems.some(item => !item.subject || !item.homework);
             if (hasEmptyItems) {
                 alert("Please fill in all subject and homework details, or remove empty homework items for all entries.");
@@ -170,8 +166,8 @@ export const CreateEditHomeworkModal = ({ initialData, onClose, onSave, subjectO
                                 {initialData && entry.id === initialData.id && " (Editing this one)"}
                             </h3>
 
-                            {/* Class, Section Inputs for THIS homework entry block */}
-                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+                            {/* Class Input for THIS homework entry block */}
+                            <div className="grid grid-cols-1 gap-4 mb-4">
                                 <div>
                                     <label className="block text-sm font-medium text-gray-700 mb-1">Select Stream</label>
                                     <Select
@@ -184,18 +180,7 @@ export const CreateEditHomeworkModal = ({ initialData, onClose, onSave, subjectO
                                         required
                                     />
                                 </div>
-                                <div>
-                                    <label className="block text-sm font-medium text-gray-700 mb-1">Select Section</label>
-                                    <Select
-                                        options={sectionOptions}
-                                        value={sectionOptions.find(opt => opt.value === entry.sectionSelected)}
-                                        onChange={(selected) => handleHomeworkEntryChange(entryIndex, 'sectionSelected', selected ? selected.value : '')}
-                                        placeholder="Select Section..."
-                                        className="basic-single"
-                                        classNamePrefix="select"
-                                        required
-                                    />
-                                </div>
+
                             </div>
 
                             {/* Homework Details per Subject for THIS homework entry block */}

@@ -220,7 +220,7 @@ const DiaryModule = () => {
                                                 <div className="flex justify-between items-start mb-2">
                                                     <div className="flex-1 min-w-0">
                                                         <h4 className="text-base font-semibold text-gray-700">
-                                                            Stream: {entry.classSelected}, Section: {entry.sectionSelected}
+                                                            Stream: {entry.classSelected}
                                                         </h4>
                                                     </div>
                                                     <div className="flex-shrink-0 flex space-x-2">

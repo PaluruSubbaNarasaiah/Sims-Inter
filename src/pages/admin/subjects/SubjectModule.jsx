@@ -60,6 +60,8 @@ const SubjectModule = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [newSubject, setNewSubject] = useState({
     name: '',
+    group: '',
+    year: '',
     lecturers: [{ empId: '', name: '' }]
   });
   const [showAddForm, setShowAddForm] = useState(false); 
@@ -122,6 +124,8 @@ const SubjectModule = () => {
   const resetForm = () => {
     setNewSubject({
       name: '',
+      group: '',
+      year: '',
       lecturers: [{ empId: '', name: '' }]
     });
     setEditingSubject(null);
@@ -130,8 +134,8 @@ const SubjectModule = () => {
 
   // Add new subject for the selected class
   const handleAddSubject = () => {
-    if (!newSubject.name) {
-      setAlert({ message: 'Subject Name is required.', type: 'error' });
+    if (!newSubject.name || !newSubject.group || !newSubject.year) {
+      setAlert({ message: 'Subject Name, Group, and Year are required.', type: 'error' });
       return;
     }
     const validLecturers = newSubject.lecturers.filter(t => t.empId && t.name);
@@ -143,6 +147,8 @@ const SubjectModule = () => {
     const subjectToAdd = {
       id: Date.now(),
       name: newSubject.name,
+      group: newSubject.group,
+      year: newSubject.year,
       lecturers: validLecturers
     };
 
@@ -171,6 +177,8 @@ const SubjectModule = () => {
     setEditingSubject(subject);
     setNewSubject({
       name: subject.name,
+      group: subject.group || '',
+      year: subject.year || '',
       lecturers: subject.lecturers.length > 0 ? subject.lecturers : [{ empId: '', name: '' }]
     });
     setShowAddForm(true);
@@ -179,8 +187,8 @@ const SubjectModule = () => {
 
   // Update subject in the selected class
   const handleUpdateSubject = () => {
-    if (!newSubject.name) {
-      setAlert({ message: 'Subject Name is required.', type: 'error' });
+    if (!newSubject.name || !newSubject.group || !newSubject.year) {
+      setAlert({ message: 'Subject Name, Group, and Year are required.', type: 'error' });
       return;
     }
     const validLecturers = newSubject.lecturers.filter(t => t.empId && t.name);
@@ -195,6 +203,8 @@ const SubjectModule = () => {
         subject.id === editingSubject.id ? {
           ...subject,
           name: newSubject.name,
+          group: newSubject.group,
+          year: newSubject.year,
           lecturers: validLecturers
         } : subject
       )
@@ -311,6 +321,39 @@ const SubjectModule = () => {
                     placeholder="Enter subject name"
                     required
                   />
+                </div>
+
+                <div>
+                  <label htmlFor="subjectGroup" className="block text-sm font-medium text-gray-700 mb-1">Group <span className="text-red-500">*</span></label>
+                  <select
+                    id="subjectGroup"
+                    className="w-full px-4 py-2.5 rounded-lg border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 appearance-none bg-white pr-10 text-gray-900 transition-colors cursor-pointer"
+                    value={newSubject.group || ''}
+                    onChange={(e) => setNewSubject({ ...newSubject, group: e.target.value })}
+                    required
+                  >
+                    <option value="">Select Group</option>
+                    <option value="MPC">MPC</option>
+                    <option value="BiPC">BiPC</option>
+                    <option value="CEC">CEC</option>
+                    <option value="MEC">MEC</option>
+                    <option value="HEC">HEC</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label htmlFor="subjectYear" className="block text-sm font-medium text-gray-700 mb-1">Year <span className="text-red-500">*</span></label>
+                  <select
+                    id="subjectYear"
+                    className="w-full px-4 py-2.5 rounded-lg border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 appearance-none bg-white pr-10 text-gray-900 transition-colors cursor-pointer"
+                    value={newSubject.year || ''}
+                    onChange={(e) => setNewSubject({ ...newSubject, year: e.target.value })}
+                    required
+                  >
+                    <option value="">Select Year</option>
+                    <option value="1">1st Year</option>
+                    <option value="2">2nd Year</option>
+                  </select>
                 </div>
 
                 <div>

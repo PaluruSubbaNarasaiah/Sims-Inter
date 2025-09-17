@@ -6,7 +6,7 @@ const CreateAssignment = ({ showCreateForm, setShowCreateForm, setAlert, assignm
   const [newAssignment, setNewAssignment] = useState({
     title: "",
     program: "",
-    year: "",
+    semester: "",
     course: "",
     dueDate: "",
     description: "",
@@ -21,7 +21,7 @@ const CreateAssignment = ({ showCreateForm, setShowCreateForm, setAlert, assignm
     e.preventDefault();
 
     if (!newAssignment.title || !newAssignment.program || !newAssignment.semester || !newAssignment.course || !newAssignment.dueDate) {
-      setAlert({ message: 'Please fill in all required fields (Title, Program, Semester, Course, Due Date).', type: 'error' });
+      setAlert({ message: 'Please fill in all required fields (Title, Group, Year, Subject, Due Date).', type: 'error' });
       return;
     }
 
@@ -79,10 +79,10 @@ const CreateAssignment = ({ showCreateForm, setShowCreateForm, setAlert, assignm
               />
             </div>
 
-            {/* Program and Semester (two columns on larger screens) */}
+            {/* Group and Year (two columns on larger screens) */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <label htmlFor="program" className="block text-sm font-medium text-gray-700 mb-1">Program <span className="text-red-500">*</span></label>
+                <label htmlFor="program" className="block text-sm font-medium text-gray-700 mb-1">Group <span className="text-red-500">*</span></label>
                 <div className="relative">
                   <select
                     id="program"
@@ -92,7 +92,7 @@ const CreateAssignment = ({ showCreateForm, setShowCreateForm, setAlert, assignm
                     className="w-full px-4 py-2.5 rounded-lg border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 appearance-none bg-white pr-10 text-gray-900 transition-colors cursor-pointer"
                     required
                   >
-                    <option value="">Select Program</option>
+                    <option value="">Select Group</option>
                     {allAvailablePrograms.map((prog) => (
                       <option key={prog} value={prog}>{prog}</option>
                     ))}
@@ -101,7 +101,7 @@ const CreateAssignment = ({ showCreateForm, setShowCreateForm, setAlert, assignm
                 </div>
               </div>
               <div>
-                <label htmlFor="semester" className="block text-sm font-medium text-gray-700 mb-1">Semester <span className="text-red-500">*</span></label>
+                <label htmlFor="semester" className="block text-sm font-medium text-gray-700 mb-1">Year <span className="text-red-500">*</span></label>
                 <div className="relative">
                   <select
                     id="semester"
@@ -111,7 +111,7 @@ const CreateAssignment = ({ showCreateForm, setShowCreateForm, setAlert, assignm
                     className="w-full px-4 py-2.5 rounded-lg border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 appearance-none bg-white pr-10 text-gray-900 transition-colors cursor-pointer"
                     required
                   >
-                    <option value="">Select Semester</option>
+                    <option value="">Select Year</option>
                     {allAvailableSemesters.map((sem) => (
                       <option key={sem} value={sem}>{sem}</option>
                     ))}
@@ -121,10 +121,10 @@ const CreateAssignment = ({ showCreateForm, setShowCreateForm, setAlert, assignm
               </div>
             </div>
 
-            {/* Course and Due Date (two columns on larger screens) */}
+            {/* Subject and Due Date (two columns on larger screens) */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <label htmlFor="course" className="block text-sm font-medium text-gray-700 mb-1">Course <span className="text-red-500">*</span></label>
+                <label htmlFor="course" className="block text-sm font-medium text-gray-700 mb-1">Subject <span className="text-red-500">*</span></label>
                 <input
                   type="text"
                   id="course"

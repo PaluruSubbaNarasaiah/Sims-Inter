@@ -8,9 +8,7 @@ import { useProfile } from './ProfileContext'; // Adjust the import path as nece
 
 const ProfileModule = () => {
   const { profileData, setProfileData } = useProfile(); // setProfileData assumed to update general profile info
-  const [isEditing, setIsEditing] = useState(false);
   const [localImage, setLocalImage] = useState(profileData.profileImage);
-  const [saveSuccess, setSaveSuccess] = useState(false);
 
   // State for password change functionality
   const [showPasswordChange, setShowPasswordChange] = useState(false);
@@ -32,39 +30,7 @@ const ProfileModule = () => {
     return new Date(dateString).toLocaleDateString('en-US', options);
   };
 
-  // Handler for general profile input changes
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setProfileData(prev => ({ ...prev, [name]: value }));
-  };
 
-  // Handler for saving general profile changes
-  const handleSave = () => {
-    setIsEditing(false);
-    // Update the profile data in the context
-    setProfileData(prev => ({
-      ...prev,
-      profileImage: localImage,
-      // The name and email are already updated via handleInputChange
-    }));
-
-    // Show success message and hide it after 3 seconds
-    setSaveSuccess(true);
-    setTimeout(() => setSaveSuccess(false), 3000);
-    // In a real app, you'd send this data to your backend API
-  };
-
-  // Handlers for profile image
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => setLocalImage(reader.result);
-      reader.readAsDataURL(file);
-    }
-  };
-
-  const handleImageRemove = () => setLocalImage('/avatar.png'); // Assuming a default avatar path
 
   // Handler for password change submission
   const handleChangePassword = async (e) => {
@@ -146,25 +112,6 @@ const ProfileModule = () => {
                   alt="Profile"
                   className="w-full h-full rounded-full object-cover border-4 border-blue-200"
                 />
-                {isEditing && (
-                  <>
-                    <label htmlFor="profile-image-upload" className="absolute bottom-0 right-0 bg-blue-700 text-white p-2 rounded-full cursor-pointer hover:bg-blue-800 transition">
-                      {localImage === '/avatar.png' || !localImage ? <Camera size={18} /> : <Edit2 size={18} />}
-                      <input
-                        id="profile-image-upload"
-                        type="file"
-                        accept="image/*"
-                        onChange={handleImageChange}
-                        className="hidden"
-                      />
-                    </label>
-                    {localImage && localImage !== '/avatar.png' && (
-                      <button onClick={handleImageRemove} className="absolute bottom-0 left-0 bg-red-600 text-white p-2 rounded-full hover:bg-red-700 transition">
-                        <XCircle size={18} />
-                      </button>
-                    )}
-                  </>
-                )}
               </div>
               <h2 className="text-2xl font-bold text-gray-900">{profileData.name}</h2>
               {/* Ensure profileData.role exists for this to work */}
@@ -183,35 +130,23 @@ const ProfileModule = () => {
                 {/* Name */}
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
-                  {isEditing ? (
-                    <input type="text" id="name" name="name" value={profileData.name} onChange={handleInputChange} className="w-full border border-gray-300 px-4 py-2.5 rounded-lg focus:ring-blue-500 focus:border-blue-500" />
-                  ) : (
-                    <p className="bg-gray-50 px-4 py-2.5 border border-gray-200 rounded-lg text-gray-800">{profileData.name}</p>
-                  )}
+                  <p className="bg-gray-50 px-4 py-2.5 border border-gray-200 rounded-lg text-gray-800">{profileData.name}</p>
                 </div>
 
                 {/* Email */}
                 <div>
                   <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
-                  {isEditing ? (
-                    <input type="email" id="email" name="email" value={profileData.email} onChange={handleInputChange} className="w-full border border-gray-300 px-4 py-2.5 rounded-lg focus:ring-blue-500 focus:border-blue-500" />
-                  ) : (
-                    <div className="flex items-center gap-3 bg-gray-50 px-4 py-2.5 border border-gray-200 rounded-lg text-gray-800">
-                      <Mail size={18} className="text-gray-500" /> <span>{profileData.email}</span>
-                    </div>
-                  )}
+                  <div className="flex items-center gap-3 bg-gray-50 px-4 py-2.5 border border-gray-200 rounded-lg text-gray-800">
+                    <Mail size={18} className="text-gray-500" /> <span>{profileData.email}</span>
+                  </div>
                 </div>
 
                 {/* Phone */}
                 <div>
                   <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
-                  {isEditing ? (
-                    <input type="tel" id="phone" name="phone" value={profileData.phone || ''} onChange={handleInputChange} className="w-full border border-gray-300 px-4 py-2.5 rounded-lg focus:ring-blue-500 focus:border-blue-500" />
-                  ) : (
-                    <div className="flex items-center gap-3 bg-gray-50 px-4 py-2.5 border border-gray-200 rounded-lg text-gray-800">
-                      <Phone size={18} className="text-gray-500" /> <span>{profileData.phone || 'N/A'}</span>
-                    </div>
-                  )}
+                  <div className="flex items-center gap-3 bg-gray-50 px-4 py-2.5 border border-gray-200 rounded-lg text-gray-800">
+                    <Phone size={18} className="text-gray-500" /> <span>{profileData.phone || 'N/A'}</span>
+                  </div>
                 </div>
 
                 {/* Role (Non-editable) */}
@@ -249,30 +184,7 @@ const ProfileModule = () => {
 
               </div>
 
-            {/* Edit/Save Profile Buttons */}
-            <div className="mt-8 flex justify-end items-center gap-4">
-              {saveSuccess && (
-                <div className="flex items-center text-green-600 animate-fade-in">
-                  <CheckCircle size={20} className="mr-2" />
-                  <span>Profile saved!</span>
-                </div>
-              )}
-              {isEditing ? (
-                <button
-                  onClick={handleSave}
-                  className="flex items-center gap-2 px-5 py-2 rounded-xl bg-blue-700 text-white font-semibold hover:bg-blue-800 transition shadow-md hover:shadow-lg transform hover:scale-105"
-                >
-                  <Save size={18} /> Save Changes
-                </button>
-              ) : (
-                <button
-                  onClick={() => setIsEditing(true)}
-                  className="flex items-center gap-2 px-5 py-2 rounded-xl bg-gray-100 text-gray-800 font-semibold hover:bg-gray-200 transition shadow-md hover:shadow-lg transform hover:scale-105"
-                >
-                  <Edit2 size={18} /> Edit Profile
-                </button>
-              )}
-            </div>
+            {/* Profile information is now read-only */}
             </div>
 
             {/* Password Management Section */}
